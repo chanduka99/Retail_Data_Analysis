@@ -5,4 +5,46 @@
 - recheck df.info to see the changes are applied.
 
 ### Step 2: Data Cleaning
-- handling missing values
+-  handling **missing values**  
+    1. we can drop the rows with missing values ->  ``df.dropna()``  |  ``df.dropna(df['date']) drop rows which have null values in column date``  |  ``df.dropna(df['date'],inplace=True) will drop the rows and change the original data frame.``  
+    2. we can replace the missing values using one of these options ->`` df.col_name.mean() ``  |   ``df.col_name.median() ``  |  `` df.col_name.mode()[0]``
+
+- handling **wrong format** values
+    if it's a date column we can use ``pd.to_datetime(df['date'],fromat='mixed')``
+
+- handling **wrong data**
+    rows with values that doesn't make sense. 
+        *example : Age : [23,45,210,68,89] . here 210 makes no sense*
+    1. remove rows  
+    2. replace values   
+        - one by one
+
+            ```
+            df.loc[index , "col_name"] = replace value
+            ```
+            ``example: df.loc[2,"Age"]=56``
+  
+        - loop through and replace
+
+            ```
+            for x in df.index:
+                df.loc[x, 'Age'] > 100
+                df.loc[x,'Age'] = df['Age'].mode[0]
+            ```
+        - loop through and drop
+            ```
+            for x in df.index:
+                df.loc[x,'Age'] > 100
+                df.drop(x,inplace=True)
+            ```
+- handling **duplicates**
+    - check for duplicates
+
+        ```
+        df.duplicated()
+        ```
+
+    - remove duplicates
+        ```
+        df.drop_duplicates(inplace=True)
+        ```
