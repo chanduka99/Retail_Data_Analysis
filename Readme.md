@@ -12,11 +12,17 @@
 - handling **wrong format** values
     if it's a date column we can use ``pd.to_datetime(df['date'],fromat='mixed')``
 
-- handling **wrong data**
+- handling **wrong data**  
     rows with values that doesn't make sense. 
         *example : Age : [23,45,210,68,89] . here 210 makes no sense*
-    1. remove rows  
-    2. replace values   
+    1. check the description of data
+        ```
+            df.describe()
+        ```
+        ``above code helps us to see min/max/mode/mean in each column``
+
+    2. remove rows or 
+    3. replace values   
         - one by one
 
             ```
