@@ -54,3 +54,5 @@
         ```
         df.drop_duplicates(inplace=True)
         ```
+
+### Step 3: Feature Engineering 
